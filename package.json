@@ -1,5 +1,5 @@
 {
-  "name": "movies-reviews",
+  "name": "movie-reviews",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
