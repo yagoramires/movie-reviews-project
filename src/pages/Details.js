@@ -11,7 +11,7 @@ const Details = () => {
 
   return (
     <section className='flex items-center justify-center sectionHeight'>
-      <div className='m-auto max-w-[1200px]'>
+      <div className='m-auto max-w-[1200px] w-[90%] mt-20'>
         <div className='flex gap-10'>
           <img
             src={

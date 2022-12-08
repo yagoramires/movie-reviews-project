@@ -13,17 +13,20 @@ const Home = () => {
 
   return (
     <section className='max-w-[1200px] w-[90%] mx-auto sectionHeight'>
-      <div className='flex items-center justify-between my-16'>
+      <div className='flex items-center justify-between gap-4 pb-8 mt-20 mb-8 border-b-4 border-yellow-400'>
         <div>
-          <h1 className='mb-2 text-5xl font-bold'>
+          <h1 className='mb-2 text-5xl font-bold md:text-4xl'>
             <span className='text-yellow-400'>Latest </span>{' '}
             <span className='border-b-4 border-black'>reviews</span>
           </h1>
-          <p className='mt-4 text-xl italic text-gray-500'>
+          <p className='mt-4 text-xl italic text-gray-500 md:text-sm'>
             Be sure not to miss these reviews today.
           </p>
         </div>
-        <form className='relative flex w-[600px]' onSubmit={handleSearch}>
+        <form
+          className='relative flex w-[600px] md:w-[300px]'
+          onSubmit={handleSearch}
+        >
           <input
             type='text'
             placeholder='Write a movie name ...'
