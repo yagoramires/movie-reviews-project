@@ -7,6 +7,8 @@ const Profile = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [image, setImage] = useState('');
 
+  console.log(image);
+
   return (
     <div>
       <div className='flex flex-col w-[90%] mx-auto justify-center items-center my-16 gap-8'>
@@ -16,12 +18,26 @@ const Profile = () => {
           className='rounded-full w-[250px] h-[250px] object-cover'
         />
 
+        <form
+          className=' w-[90%]
+          max-w-[600px]'
+        >
+          <input
+            type='file'
+            className='block w-full p-3 m-0 text-base font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+            onChange={(e) => setImage(e.target.value)}
+          />
+        </form>
+
         <h1 className='text-3xl font-bold text-yellow-400 border-b-4 border-black'>
           Uzumaki Naruto
         </h1>
       </div>
 
-      <form className='flex flex-col max-w-[600px] w-[90%] mx-auto gap-3'>
+      <form
+        className='flex flex-col max-w-[600px] w-[90%] mx-auto gap-3 mb-16
+      '
+      >
         <input
           type='text'
           value={username}
