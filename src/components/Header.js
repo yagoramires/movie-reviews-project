@@ -12,10 +12,11 @@ import {
 
 // Icons
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { RiUserLine } from 'react-icons/ri';
+import { RiUserFill } from 'react-icons/ri';
+import { useAuth } from '../hooks/useAuth';
 
-const Header = () => {
-  const user = false;
+const Header = ({ user }) => {
+  const { signOutUser } = useAuth();
 
   return (
     <header className='shadow-md bg-gray-50 '>
@@ -29,11 +30,11 @@ const Header = () => {
         </Link>
         <List className='relative top-[4px] '>
           {!user && (
-            <Item className=''>
-              <Trigger className=''>
+            <Item>
+              <Trigger>
                 <GiHamburgerMenu size={20} className='text-yellow-400' />
               </Trigger>
-              <Content className='absolute right-0 flex flex-col gap-2 p-4 shadow-md bg-gray-50'>
+              <Content className='absolute right-0 z-10 flex flex-col gap-2 p-4 shadow-md bg-gray-50'>
                 <Link
                   to='/login'
                   className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
@@ -51,13 +52,28 @@ const Header = () => {
           )}
           {user && (
             <Item>
-              <Trigger className=''>
-                <RiUserLine />
+              <Trigger className='p-2 text-center text-yellow-400 bg-black rounded-full'>
+                <RiUserFill size={15} className='text-yellow-400 ' />
               </Trigger>
-              <Content className=''>
-                <Link to='/profile'>Profile</Link>
-                <Link to='/favorites'>Favorites</Link>
-                <span onClick={() => {}}>Sign out</span>
+              <Content className='absolute right-0 z-10 flex flex-col gap-2 p-4 shadow-md bg-gray-50'>
+                <Link
+                  to='/profile'
+                  className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
+                >
+                  Profile
+                </Link>
+                <Link
+                  to='/favorites'
+                  className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
+                >
+                  Favorites
+                </Link>
+                <span
+                  onClick={signOutUser}
+                  className='px-4 text-yellow-400 transition-all duration-200 cursor-pointer hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
+                >
+                  Sign out
+                </span>
               </Content>
             </Item>
           )}

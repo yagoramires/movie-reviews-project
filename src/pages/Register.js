@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 // Router
 import { Link } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
   const [error, setError] = useState(null);
 
-  const loading = false;
+  const { registerUser, error: firebaseError, loading } = useAuth();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -23,10 +23,20 @@ const Register = () => {
       confirmPassword === ''
     ) {
       setError('Empty fields');
+      return;
     } else if (confirmPassword !== password) {
       setError('Passwords must be equal');
+      return;
     }
+
+    registerUser(email, password, username);
   };
+
+  useEffect(() => {
+    if (firebaseError) {
+      setError(firebaseError);
+    }
+  }, [firebaseError]);
 
   useEffect(() => {
     if (error) {

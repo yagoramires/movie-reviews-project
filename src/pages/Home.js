@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <section className='max-w-[1200px] w-[90%] mx-auto sectionHeight'>
-      <div className='flex items-center justify-between gap-4 pb-8 mt-20 mb-8 border-b-4 border-yellow-400'>
+      <div className='flex items-center justify-between gap-4 pb-8 mt-10 mb-8 border-b-4 border-yellow-400'>
         <div>
           <h1 className='mb-2 text-5xl font-bold md:text-4xl'>
             <span className='text-yellow-400'>Latest </span>{' '}
@@ -41,7 +41,7 @@ const Home = () => {
       </div>
 
       <div className='flex flex-wrap items-center justify-between gap-4'>
-        <Link to='/details'>
+        <Link to='/details/:id'>
           <Card />
         </Link>
         <Card />

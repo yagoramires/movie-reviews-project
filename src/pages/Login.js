@@ -2,22 +2,41 @@ import React, { useEffect, useState } from 'react';
 
 // Router
 import { Link } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
 
-  const loading = false;
+  const {
+    signInUser,
+    message: firebaseMessage,
+    error: firebaseError,
+    loading,
+  } = useAuth();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     if (email === '' || password === '') {
       setError('Empty fields');
+      return;
     }
+
+    signInUser(email, password);
   };
+
+  useEffect(() => {
+    if (firebaseError) {
+      setError(firebaseError);
+    }
+    if (firebaseMessage) {
+      setMessage(firebaseMessage);
+    }
+  }, [firebaseMessage, firebaseError]);
 
   useEffect(() => {
     if (error) {
@@ -25,7 +44,12 @@ const Login = () => {
         setError(null);
       }, 3000);
     }
-  }, [error]);
+    if (message) {
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+    }
+  }, [message, error]);
 
   return (
     <section className='flex flex-col items-center justify-center sectionHeight'>
@@ -67,6 +91,7 @@ const Login = () => {
           {loading && <p>loading...</p>}
 
           {error && <p className='error'>{error}</p>}
+          {message && <p className='message'>{message}</p>}
         </form>
         <div className='flex flex-col w-full gap-2 mt-4'>
           <p className='italic text-gray-500 '>

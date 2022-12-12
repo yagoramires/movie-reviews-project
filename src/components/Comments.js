@@ -10,7 +10,7 @@ const Comments = () => {
     if (newComment === '') {
       return;
     }
-    const data = {};
+    // const data = {};
 
     setNewComment('');
   };
