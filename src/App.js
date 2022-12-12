@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Details from './pages/Details';
 import Profile from './pages/Profile';
+import NewReview from './pages/NewReview';
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -42,6 +43,10 @@ function App() {
         <Route
           path='/profile'
           element={!user ? <Navigate to='/' /> : <Profile />}
+        />
+        <Route
+          path='/add-review'
+          element={!user ? <Navigate to='/' /> : <NewReview />}
         />
         <Route path='/details/:id' element={<Details />} />
       </Routes>

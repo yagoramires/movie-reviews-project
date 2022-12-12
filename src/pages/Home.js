@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <section className='max-w-[1200px] w-[90%] mx-auto sectionHeight'>
-      <div className='flex items-center justify-between gap-4 pb-8 mt-10 mb-8 border-b-4 border-yellow-400'>
+      <div className='flex flex-col items-center justify-between gap-4 pb-8 mt-10 mb-8 border-b-4 border-yellow-400 md:flex-row'>
         <div>
           <h1 className='mb-2 text-5xl font-bold md:text-4xl'>
             <span className='text-yellow-400'>Latest </span>{' '}
@@ -24,7 +24,7 @@ const Home = () => {
           </p>
         </div>
         <form
-          className='relative flex w-[600px] md:w-[300px]'
+          className='relative flex max-w-[600px] w-[90%]'
           onSubmit={handleSearch}
         >
           <input
@@ -35,7 +35,7 @@ const Home = () => {
           <input
             type='submit'
             value='Search'
-            className='absolute right-0 items-center justify-center p-4 font-bold text-white bg-yellow-400 border-2 border-yellow-400 cursor-pointer rounded-r-md'
+            className='absolute right-0 items-center justify-center p-4 font-bold text-white transition-all duration-300 bg-yellow-400 border-2 border-yellow-400 shadow-sm cursor-pointer rounded-r-md hover:bg-yellow-300 hover:tracking-wider'
           />
         </form>
       </div>
