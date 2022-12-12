@@ -52,9 +52,19 @@ const Header = ({ user }) => {
           )}
           {user && (
             <Item>
-              <Trigger className='p-2 text-center text-yellow-400 bg-black rounded-full'>
-                <RiUserFill size={15} className='text-yellow-400 ' />
-              </Trigger>
+              {user.photoURL ? (
+                <Trigger className='flex items-center gap-2'>
+                  <img
+                    src={user.photoURL}
+                    alt='user'
+                    className='object-cover w-10 h-10 rounded-full'
+                  />
+                </Trigger>
+              ) : (
+                <Trigger className='p-2 text-center text-yellow-400 bg-black rounded-full'>
+                  <RiUserFill size={15} className='text-yellow-400 ' />
+                </Trigger>
+              )}
               <Content className='absolute right-0 z-10 flex flex-col gap-2 p-4 shadow-md bg-gray-50 w-[170px]'>
                 <Link
                   to='/profile'

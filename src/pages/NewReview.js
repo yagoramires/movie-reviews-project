@@ -30,7 +30,7 @@ const NewReview = () => {
       {image && (
         <img
           src={URL.createObjectURL(image)}
-          alt=''
+          alt='preview'
           className='max-w-[600px] w-[90%] object-cover mb-8 shadow-md rounded-md'
         />
       )}

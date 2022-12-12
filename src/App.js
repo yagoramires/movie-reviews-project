@@ -42,11 +42,11 @@ function App() {
         <Route path='/details/:id' element={<Details />} />
         <Route
           path='/profile'
-          element={!user ? <Navigate to='/' /> : <Profile />}
+          element={!user ? <Navigate to='/' /> : <Profile user={user} />}
         />
         <Route
           path='/add-review'
-          element={!user ? <Navigate to='/' /> : <NewReview />}
+          element={!user ? <Navigate to='/' /> : <NewReview user={user} />}
         />
         <Route path='/details/:id' element={<Details />} />
       </Routes>
