@@ -40,7 +40,7 @@ const Home = () => {
         </form>
       </div>
 
-      <div className='flex flex-wrap items-center justify-between gap-4'>
+      <div className='flex flex-wrap items-center justify-between'>
         <Link to='/details/:id'>
           <Card />
         </Link>
