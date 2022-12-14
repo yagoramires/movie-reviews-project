@@ -7,7 +7,6 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 export const useAddReview = () => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
-  const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const addReview = async (data, img) => {
@@ -24,7 +23,7 @@ export const useAddReview = () => {
         (snapshot) => {
           const uploadProgress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setProgress(uploadProgress);
+          console.log(uploadProgress);
         },
         (error) => {
           alert(error.message);
@@ -40,7 +39,6 @@ export const useAddReview = () => {
           };
 
           await addDoc(docRef, docData);
-          setProgress(0);
           setLoading(false);
           setSuccess('Review added successfully');
         },

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useUpdateProfile } from '../hooks/useUpdateProfile';
-import { useUploadImage } from '../hooks/useUploadImage';
+import { MdOutlineClose, MdCheck } from 'react-icons/md';
+import Loading from '../components/Loading';
 
 const Profile = ({ user }) => {
   const [username, setUsername] = useState('');
@@ -9,49 +10,57 @@ const Profile = ({ user }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [image, setImage] = useState('');
 
-  const [loading, setLoading] = useState(false);
-
-  const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
-
-  const [imageSuccess, setImageSuccess] = useState('');
-  const [imageError, setImageError] = useState('');
 
   const {
     updateImage,
     updateUsername,
     updateUserEmail,
     updateUserPassword,
-    error: firestoreError,
+    loadImg,
+    successImg,
+    errorImg,
+    loadName,
+    successName,
+    errorName,
+    loadEmail,
+    successEmail,
+    errorEmail,
+    loadPassword,
+    successPassword,
+    errorPassword,
+    setSuccessImg,
+    setErrorImg,
+    setSuccessName,
+    setErrorName,
+    setSuccessEmail,
+    setErrorEmail,
+    setSuccessPassword,
+    setErrorPassword,
   } = useUpdateProfile();
-
-  const {
-    uploadImage,
-    imageRef,
-    error: storageError,
-    success: storageSuccess,
-  } = useUploadImage();
 
   const handleUpdateProfile = (e) => {
     e.preventDefault();
-
-    setLoading(true);
+    setError(null);
 
     if (
+      image === '' &&
       username === '' &&
       email === '' &&
       password === '' &&
       confirmPassword === ''
     ) {
-      setError('Empty fields');
-      setLoading(false);
+      setError('Empty fields are empty');
       return;
     }
 
     if (password !== confirmPassword) {
       setError('Passwords must be equal');
-      setLoading(false);
       return;
+    }
+
+    if (image !== '') {
+      updateImage(image);
     }
 
     if (username !== '') {
@@ -70,56 +79,57 @@ const Profile = ({ user }) => {
       updateUserPassword(password);
     }
 
+    setImage('');
     setUsername('');
     setEmail('');
     setPassword('');
     setConfirmPassword('');
-    setSuccess('Profile updated successfully');
-    setLoading(false);
     return;
   };
 
-  const handleUpdateImage = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    uploadImage(image);
-  };
-
   useEffect(() => {
-    if (imageRef) {
-      updateImage(imageRef);
+    if (successImg) {
+      setTimeout(() => setSuccessImg(null), 5000);
     }
-  }, [imageRef, updateImage]);
-
-  useEffect(() => {
-    if (firestoreError) {
-      setError(firestoreError);
+    if (errorImg) {
+      setTimeout(() => setErrorImg(null), 5000);
     }
-    if (storageSuccess) {
-      setImageSuccess(storageSuccess);
+    if (successName) {
+      setTimeout(() => setSuccessName(null), 5000);
     }
-    if (storageError) {
-      setImageError(storageError);
+    if (errorName) {
+      setTimeout(() => setErrorName(null), 5000);
     }
-  }, [firestoreError, storageError, storageSuccess]);
-
-  useEffect(() => {
-    if (error) {
-      setTimeout(() => setError(''), 3000);
+    if (successEmail) {
+      setTimeout(() => setSuccessEmail(null), 5000);
     }
-    if (imageError) {
-      setTimeout(() => setError(''), 3000);
+    if (errorEmail) {
+      setTimeout(() => setErrorEmail(null), 5000);
     }
-    if (success) {
-      setTimeout(() => setSuccess(''), 3000);
+    if (successPassword) {
+      setTimeout(() => setSuccessPassword(null), 5000);
     }
-    if (imageSuccess) {
-      setTimeout(() => setImageSuccess(''), 3000);
+    if (errorPassword) {
+      setTimeout(() => setErrorPassword(null), 5000);
     }
-    if (loading === true) {
-      setTimeout(() => setLoading(false), 3000);
-    }
-  }, [error, imageError, success, imageSuccess, loading]);
+  }, [
+    successImg,
+    errorImg,
+    successName,
+    errorName,
+    successEmail,
+    errorEmail,
+    successPassword,
+    errorPassword,
+    setSuccessImg,
+    setErrorImg,
+    setSuccessName,
+    setErrorName,
+    setSuccessEmail,
+    setErrorEmail,
+    setSuccessPassword,
+    setErrorPassword,
+  ]);
 
   return (
     <div>
@@ -148,75 +158,96 @@ const Profile = ({ user }) => {
       '
         onSubmit={handleUpdateProfile}
       >
-        <input
-          type='text'
-          value={username || ''}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          placeholder='Username'
-          className='p-4 rounded-md shadow-md outline-none bg-slate-50'
-        />
-        <input
-          type='email'
-          value={email || ''}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          placeholder='E-mail'
-          className='p-4 rounded-md shadow-md outline-none bg-slate-50'
-        />
-        <input
-          type='password'
-          value={password || ''}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          placeholder='Password'
-          className='p-4 rounded-md shadow-md outline-none bg-slate-50'
-          autoComplete='true'
-        />
-        <input
-          type='password'
-          value={confirmPassword || ''}
-          onChange={(e) => {
-            setConfirmPassword(e.target.value);
-          }}
-          placeholder='Confirm Password'
-          className='p-4 rounded-md shadow-md outline-none bg-slate-50'
-          autoComplete='true'
-        />
+        <div className='flex items-center w-full gap-3'>
+          <input
+            type='file'
+            className='block w-full p-4 m-0 text-base font-normal text-gray-700 transition ease-in-out border-none rounded shadow-md bg-slate-50 form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+          {loadImg && <Loading size={'25px'} />}
+          {successImg && <MdCheck size={25} className='text-green-500' />}
+          {errorImg && <MdOutlineClose size={25} className='text-red-500' />}
+        </div>
+        <div className='flex items-center w-full gap-3'>
+          <input
+            type='text'
+            value={username || ''}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            placeholder='Username'
+            className='w-full p-4 rounded-md shadow-md outline-none bg-slate-50'
+          />
+          {loadName && <Loading size={'25px'} />}
+          {successName && <MdCheck size={25} className='text-green-500' />}
+          {errorName && <MdOutlineClose size={25} className='text-red-500' />}
+        </div>
+        <div className='flex items-center w-full gap-3'>
+          <input
+            type='email'
+            value={email || ''}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            placeholder='E-mail'
+            className='w-full p-4 rounded-md shadow-md outline-none bg-slate-50'
+          />
+          {loadEmail && <Loading size={'25px'} />}
+          {successEmail && <MdCheck size={25} className='text-green-500' />}
+          {errorEmail && <MdOutlineClose size={25} className='text-red-500' />}
+        </div>
+        <div className='flex items-center w-full gap-3'>
+          <div className='flex flex-col w-full gap-3'>
+            <input
+              type='password'
+              value={password || ''}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              placeholder='Password'
+              className='p-4 rounded-md shadow-md outline-none bg-slate-50'
+              autoComplete='true'
+            />
+            <input
+              type='password'
+              value={confirmPassword || ''}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
+              placeholder='Confirm Password'
+              className='p-4 rounded-md shadow-md outline-none bg-slate-50'
+              autoComplete='true'
+            />
+          </div>
 
-        <input
-          type='submit'
-          value='Update Profile'
-          className='w-full p-4 font-bold text-white transition-all duration-300 bg-yellow-400 rounded-md shadow-sm cursor-pointer hover:bg-yellow-300 hover:tracking-wider'
-        />
+          {loadPassword && <Loading size={'25px'} />}
+          {successPassword && <MdCheck size={25} className='text-green-500' />}
+          {errorPassword && (
+            <MdOutlineClose size={25} className='text-red-500' />
+          )}
+        </div>
 
-        {error && <p className='error'>{error}</p>}
-        {success && <p className='success'>{success}</p>}
-      </form>
-      <form
-        className='flex flex-col max-w-[600px] w-[90%] mx-auto gap-3 mb-16
-      '
-        onSubmit={handleUpdateImage}
-      >
-        <input
-          type='file'
-          className='block w-full p-4 m-0 text-base font-normal text-gray-700 transition ease-in-out border-none rounded shadow-md bg-slate-50 form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
-          onChange={(e) => setImage(e.target.files[0])}
-        />
-        {loading ? (
-          <p>loading ...</p>
+        {loadImg || loadEmail || loadName || loadPassword ? (
+          <div className='flex items-center justify-center w-full my-4'>
+            <Loading size={'45px'} />
+          </div>
         ) : (
           <input
             type='submit'
-            value='Update Image'
+            value='Update Profile'
             className='w-full p-4 font-bold text-white transition-all duration-300 bg-yellow-400 rounded-md shadow-sm cursor-pointer hover:bg-yellow-300 hover:tracking-wider'
           />
         )}
-        {imageError && <p className='error'>{imageError}</p>}
-        {imageSuccess && <p className='success'>{imageSuccess}</p>}
+
+        {error && <p className='error'>{error}</p>}
+        {errorImg && <p className='error'>{errorImg}</p>}
+        {errorName && <p className='error'>{errorName}</p>}
+        {errorEmail && <p className='error'>{errorEmail}</p>}
+        {errorPassword && <p className='error'>{errorPassword}</p>}
+        {successImg && <p className='success'>{successImg}</p>}
+        {successName && <p className='success'>{successName}</p>}
+        {successEmail && <p className='success'>{successEmail}</p>}
+        {successPassword && <p className='success'>{successPassword}</p>}
       </form>
     </div>
   );
