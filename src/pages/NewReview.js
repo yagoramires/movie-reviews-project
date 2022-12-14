@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Loading from '../components/Loading';
 import { useAddReview } from '../hooks/useAddReview';
 
 const genreOptions = [
@@ -148,7 +149,9 @@ const NewReview = ({ user }) => {
         />
 
         {loading ? (
-          <p>loading ...</p>
+          <div className='flex items-center justify-center w-full'>
+            <Loading size={'30px'} />
+          </div>
         ) : (
           <input
             type='submit'

@@ -2,21 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 // Router
 import { Link } from 'react-router-dom';
+import Loading from '../components/Loading';
 import { useAuth } from '../hooks/useAuth';
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
 
-  const {
-    signInUser,
-    message: firebaseMessage,
-    error: firebaseError,
-    loading,
-  } = useAuth();
+  const { signInUser, error: firebaseError, loading } = useAuth();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -33,10 +28,7 @@ const Login = () => {
     if (firebaseError) {
       setError(firebaseError);
     }
-    if (firebaseMessage) {
-      setMessage(firebaseMessage);
-    }
-  }, [firebaseMessage, firebaseError]);
+  }, [firebaseError]);
 
   useEffect(() => {
     if (error) {
@@ -44,12 +36,7 @@ const Login = () => {
         setError(null);
       }, 3000);
     }
-    if (message) {
-      setTimeout(() => {
-        setMessage(null);
-      }, 3000);
-    }
-  }, [message, error]);
+  }, [error]);
 
   return (
     <section className='flex flex-col items-center justify-center sectionHeight'>
@@ -88,10 +75,13 @@ const Login = () => {
             />
           )}
 
-          {loading && <p>loading...</p>}
+          {loading && (
+            <div className='flex items-center justify-center w-full'>
+              <Loading size={'30px'} />
+            </div>
+          )}
 
           {error && <p className='error'>{error}</p>}
-          {message && <p className='message'>{message}</p>}
         </form>
         <div className='flex flex-col w-full gap-2 mt-4'>
           <p className='italic text-gray-500 '>

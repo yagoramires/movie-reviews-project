@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 // Router
 import { Link } from 'react-router-dom';
+import Loading from '../components/Loading';
 import { useAuth } from '../hooks/useAuth';
 
 const Register = () => {
@@ -100,7 +101,11 @@ const Register = () => {
             />
           )}
 
-          {loading && <p>loading...</p>}
+          {loading && (
+            <div className='flex items-center justify-center w-full'>
+              <Loading size={'30px'} />
+            </div>
+          )}
 
           {error && <p className='error'>{error}</p>}
         </form>

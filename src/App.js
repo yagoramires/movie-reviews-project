@@ -15,6 +15,7 @@ import Register from './pages/Register';
 import Details from './pages/Details';
 import Profile from './pages/Profile';
 import NewReview from './pages/NewReview';
+import Loading from './components/Loading';
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -27,8 +28,13 @@ function App() {
     });
   }, [auth, onAuthStateChanged]);
 
-  if (user === undefined) return <p>Loading...</p>;
-
+  if (user === undefined) {
+    return (
+      <div className='flex items-center justify-center sectionHeight'>
+        <Loading size={'60px'} />
+      </div>
+    );
+  }
   return (
     <div className='App'>
       <Header user={user} />

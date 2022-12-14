@@ -43,7 +43,7 @@ const Home = () => {
         </form>
       </div>
 
-      <div className='flex flex-wrap items-center justify-center gap-2'>
+      <div className='flex flex-wrap items-start justify-center gap-2'>
         {documents?.map((document) => (
           <Link to={`/details/${document.id}`}>
             <Card
