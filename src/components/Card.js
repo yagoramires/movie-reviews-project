@@ -2,15 +2,13 @@ import React from 'react';
 
 import { AiFillStar } from 'react-icons/ai';
 
-const Card = ({ props }) => {
+const Card = ({ image, title, genre, rating }) => {
   const stars = [1, 2, 3, 4, 5];
 
   return (
     <div className='flex flex-col gap-2 relative w-[200px] mt-4 cursor-pointer hover:scale-105 transition-all duration-200 overflow-hidden'>
       <img
-        src={
-          'https://i0.wp.com/www.popsfera.com.br/wp-content/uploads/2021/11/BB266E4D-ECD6-474B-98A0-9E40077732B7.jpeg?resize=800%2C1000&ssl=1'
-        }
+        src={image}
         alt='poster'
         className=' w-[200px] h-[300px] object-cover shadow-lg rounded-md'
       />
@@ -21,9 +19,9 @@ const Card = ({ props }) => {
               <AiFillStar key={e} className='text-yellow-400' />
             ))}
           </span>
-          <span className='text-sm italic text-gray-400'>{'Action'}</span>
+          <span className='pr-1 text-sm italic text-gray-400'>{genre}</span>
         </div>
-        <h3 className='text-xl font-bold '>{'Spider-Man no way home'}</h3>
+        <h3 className='text-xl font-bold '>{title}</h3>
       </div>
     </div>
   );

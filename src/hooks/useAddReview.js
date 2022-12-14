@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
 import { database, storage } from '../firebase/config';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
@@ -35,6 +35,7 @@ export const useAddReview = () => {
 
           const docData = {
             image: url,
+            createdAt: Timestamp.now(),
             ...data,
           };
 

@@ -5,11 +5,14 @@ import { Link } from 'react-router-dom';
 
 // Components
 import Card from '../components/Card';
+import { useFetchData } from '../hooks/useFetchData';
 
 const Home = () => {
   const handleSearch = (e) => {
     e.preventDefault();
   };
+
+  const { documents } = useFetchData();
 
   return (
     <section className='max-w-[1200px] w-[90%] mx-auto sectionHeight my-8'>
@@ -40,21 +43,17 @@ const Home = () => {
         </form>
       </div>
 
-      <div className='flex flex-wrap items-center justify-between gap-2'>
-        <Link to='/details/:id'>
-          <Card />
-        </Link>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      <div className='flex flex-wrap items-center justify-center gap-2'>
+        {documents?.map((document) => (
+          <Link to={`/details/${document.id}`}>
+            <Card
+              image={document.image}
+              title={document.title}
+              genre={document.genre}
+              rating={document.rating}
+            />
+          </Link>
+        ))}
       </div>
     </section>
   );

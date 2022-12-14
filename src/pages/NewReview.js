@@ -16,7 +16,7 @@ const genreOptions = [
   'Thriller',
 ];
 
-const NewReview = () => {
+const NewReview = ({ user }) => {
   const [image, setImage] = useState('');
   const [title, setTitle] = useState('');
   const [rating, setRating] = useState('');
@@ -48,6 +48,7 @@ const NewReview = () => {
     }
 
     const data = {
+      user: user.uid,
       title,
       rating,
       genre,
@@ -70,6 +71,16 @@ const NewReview = () => {
       setDescription('');
     }
   }, [firebaseError, firebaseSuccess]);
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => setError(''), 3000);
+    }
+
+    if (success) {
+      setTimeout(() => setSuccess(''), 3000);
+    }
+  }, [error, success, loading]);
 
   return (
     <section className='flex flex-col items-center justify-center sectionHeight'>
@@ -108,16 +119,18 @@ const NewReview = () => {
           className='p-4 rounded-md shadow-md outline-none bg-slate-50'
           min={0}
           max={5}
-          value={rating || 0}
+          value={rating || ''}
           onChange={(e) => setRating(e.target.value)}
         />
 
         <select
-          className='p-4 rounded-md shadow-md outline-none bg-slate-50'
+          className={`p-4  rounded-md shadow-md outline-none bg-slate-50 ${
+            genre === '' && 'text-gray-400'
+          }`}
           value={genre || ''}
           onChange={(e) => setGenre(e.target.value)}
         >
-          <option value='' className='text-gray-700'>
+          <option value='' className='disabled:text-gray-500' disabled>
             Genre
           </option>
           {genreOptions.map((genre) => (
