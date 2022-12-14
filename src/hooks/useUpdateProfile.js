@@ -12,6 +12,8 @@ import {
 // React Hooks
 import { useState } from 'react';
 
+// passar a função de criar collection dentro da função de upload image
+
 export const useUpdateProfile = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
