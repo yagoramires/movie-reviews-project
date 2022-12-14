@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { AiFillStar } from 'react-icons/ai';
 
 const Card = ({ image, title, genre, rating }) => {
-  const stars = [1, 2, 3, 4, 5];
+  const [stars, setStars] = useState([]);
+
+  const setRatingStars = (size) => {
+    const arr = [];
+    for (let i = 1; i <= size; i++) {
+      arr.push(i);
+    }
+    return arr;
+  };
+
+  useEffect(() => {
+    setStars(setRatingStars(rating));
+  }, [rating]);
 
   return (
     <div className='flex flex-col gap-2 relative w-[200px] mt-4 cursor-pointer hover:scale-105 transition-all duration-200 overflow-hidden'>
