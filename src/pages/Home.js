@@ -43,7 +43,7 @@ const Home = () => {
         </form>
       </div>
 
-      <div className='grid items-start grid-flow-row grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+      <div className='grid items-start grid-flow-row grid-cols-1 py-4 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
         {movies?.map((movie) => (
           <Link
             key={movie.id}
