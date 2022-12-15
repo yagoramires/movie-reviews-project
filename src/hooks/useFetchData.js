@@ -21,7 +21,7 @@ export const useFetchData = (docCollection) => {
       });
     };
     fetchData();
-  }, []);
+  }, [docCollection]);
 
   return { documents };
 };
