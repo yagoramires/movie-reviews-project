@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import Comments from '../components/Comments';
 import { database } from '../firebase/config';
 
-const Details = () => {
+const Details = ({ user }) => {
   const { id } = useParams();
 
   const [stars, setStars] = useState([]);
@@ -40,38 +40,41 @@ const Details = () => {
   }, [movie]);
 
   return (
-    <section className='flex items-center justify-center sectionHeight'>
-      <div className='m-auto max-w-[1200px] w-[90%] mt-10'>
-        <div className='flex gap-10'>
+    <section className='flex items-center justify-center py-4 sectionHeight lg:py-8'>
+      <div className='m-auto max-w-[1200px] w-[90%] '>
+        <div className='flex flex-col gap-10 lg:flex-row'>
           <img
             src={movie.image}
             alt='poster'
-            className='min-w-[500px] h-[700px] object-cover'
+            className='object-cover lg:w-[500px] lg:h-[700px] max-h-[400px] md:max-h-[700px]'
           />
 
-          <div className='flex flex-col gap-10'>
-            <h1 className='w-full text-6xl font-bold mt-[-10px]'>
+          <div className='flex flex-col gap-4'>
+            <h1 className='w-full text-3xl lg:text-6xl font-bold lg:mt-[-10px]'>
               {movie.title}
             </h1>
             <div className='flex items-center justify-between'>
               <div className='flex items-center'>
                 {stars.map((e) => (
-                  <AiFillStar key={e} size={30} className='text-yellow-400' />
+                  <AiFillStar
+                    key={e}
+                    className='text-xl text-yellow-400 lg:text-3xl'
+                  />
                 ))}
               </div>
               <div className='flex items-center gap-4'>
                 {/* <AddToFavorits data={movieData} movieId={id} /> */}
-                <span className='text-2xl italic text-gray-500'>
+                <span className='text-xl italic text-gray-500'>
                   {movie.genre}
                 </span>
               </div>
             </div>
-            <p className='text-xl text-justify '>{movie.description}</p>
+            <p className='text-justify lg:text-xl'>{movie.description}</p>
           </div>
         </div>
 
         {/* Comments section */}
-        <Comments />
+        <Comments id={id} user={user} />
       </div>
     </section>
   );

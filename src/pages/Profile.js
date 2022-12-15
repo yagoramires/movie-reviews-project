@@ -148,7 +148,7 @@ const Profile = ({ user }) => {
           />
         )}
 
-        <h1 className='pb-2 text-3xl font-bold text-yellow-400 border-b-4 border-black'>
+        <h1 className='pb-2 text-5xl font-bold text-yellow-400 border-b-4 border-black'>
           {user.displayName}
         </h1>
       </div>

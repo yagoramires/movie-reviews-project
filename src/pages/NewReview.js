@@ -31,11 +31,15 @@ const NewReview = ({ user }) => {
     addReview,
     error: firebaseError,
     success: firebaseSuccess,
+    setError: firebaseSetError,
+    setSuccess: firebaseSetSuccess,
     loading,
   } = useAddReview();
 
   const handleUpload = (e) => {
     e.preventDefault();
+    firebaseSetError(null);
+    firebaseSetSuccess(null);
 
     if (
       image === '' ||
@@ -85,8 +89,8 @@ const NewReview = ({ user }) => {
 
   return (
     <section className='flex flex-col items-center justify-center sectionHeight'>
-      <h1 className='my-8 text-3xl font-bold text-yellow-400 uppercase border-b-4 border-black '>
-        Add new review
+      <h1 className='my-8 text-5xl font-bold text-yellow-400 border-b-4 border-black '>
+        Add Movie
       </h1>
 
       {image && (

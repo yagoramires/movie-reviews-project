@@ -20,7 +20,7 @@ const Header = ({ user }) => {
 
   return (
     <header className='shadow-md bg-gray-50 '>
-      <Root className='flex justify-between items-center max-w-[1200px] w-[80%] mx-auto py-4 '>
+      <Root className='flex justify-between items-center max-w-[1200px] w-[90%] mx-auto py-4 '>
         <Link
           to='/'
           className='text-2xl font-bold transition-all duration-300 hover:tracking-wider'

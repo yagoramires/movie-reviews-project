@@ -49,5 +49,5 @@ export const useAddReview = () => {
     }
   };
 
-  return { addReview, success, error, loading };
+  return { addReview, success, setSuccess, error, setError, loading };
 };
