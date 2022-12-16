@@ -46,7 +46,7 @@ const Details = ({ user }) => {
           <img
             src={movie.image}
             alt='poster'
-            className='object-cover lg:w-[500px] lg:h-[700px] max-h-[400px] md:max-h-[700px]'
+            className='object-cover lg:w-[500px] lg:h-[700px] max-h-[500px] md:max-h-[700px]'
           />
 
           <div className='flex flex-col gap-4'>

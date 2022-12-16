@@ -18,11 +18,11 @@ const Card = ({ image, title, genre, rating }) => {
   }, [rating]);
 
   return (
-    <div className='flex flex-col gap-2 relative w-[200px] mt-4 cursor-pointer hover:scale-105 transition-all duration-200 overflow-hidden'>
+    <div className='flex flex-col gap-2 relative w-[300px] sm:w-[220px] md:w-[200px] xl:w-[260px] cursor-pointer hover:scale-105 transition-all duration-200 overflow-hidden '>
       <img
         src={image}
         alt='poster'
-        className=' w-[200px] h-[300px] object-cover shadow-lg rounded-md'
+        className=' w-full h-[480px] sm:h-[360px] md:h-[300px] xl:h-[420px] object-cover shadow-lg'
       />
       <div className=''>
         <div className='flex items-center justify-between'>
