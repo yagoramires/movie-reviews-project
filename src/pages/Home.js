@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Router
 import { Link } from 'react-router-dom';
@@ -8,11 +8,20 @@ import Card from '../components/Card';
 import { useFetchData } from '../hooks/useFetchData';
 
 const Home = () => {
-  const handleSearch = (e) => {
-    e.preventDefault();
-  };
-
   const { documents: movies } = useFetchData('reviews');
+
+  const [search, setSearch] = useState(null);
+  const [moviesFilter, setMoviesFilter] = useState([]);
+
+  useEffect(() => {
+    if (search) {
+      const filter = movies.filter((movie) =>
+        movie.title.toLowerCase().includes(search.toLowerCase()),
+      );
+
+      setMoviesFilter(filter);
+    }
+  }, [search, movies]);
 
   return (
     <section className='max-w-[1200px] w-[90%] mx-auto sectionHeight py-4 md:p-8'>
@@ -26,38 +35,55 @@ const Home = () => {
             Be sure not to miss these reviews today.
           </p>
         </div>
-        <form
-          className='relative flex sm:w-[50%]  w-full'
-          onSubmit={handleSearch}
-        >
+        <form className='relative flex sm:w-[50%]  w-full'>
           <input
             type='text'
             placeholder='Write a movie name ...'
-            className='items-center justify-center w-full p-2 italic border-2 rounded-md outline-none border-slate-200-400 text-start bg-gray-50'
+            className='items-center justify-center w-full p-2 italic border-2 rounded-md outline-none placeholder:text-center border-slate-200-400 text-start bg-gray-50'
+            value={search || ''}
+            onChange={(e) => setSearch(e.target.value)}
           />
-          <input
+          {/* <input
             type='submit'
             value='Search'
             className='absolute right-0 items-center justify-center p-2 font-bold text-white transition-all duration-300 bg-yellow-400 border-2 border-yellow-400 shadow-sm cursor-pointer rounded-r-md hover:bg-yellow-300 hover:border-yellow-300 hover:tracking-wider'
-          />
+          /> */}
         </form>
       </div>
 
       <div className='grid items-start grid-flow-row grid-cols-1 gap-8 py-8 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-        {movies?.map((movie) => (
-          <Link
-            key={movie.id}
-            to={`/details/${movie.id}`}
-            className='flex items-center'
-          >
-            <Card
-              image={movie.image}
-              title={movie.title}
-              genre={movie.genre}
-              rating={movie.rating}
-            />
-          </Link>
-        ))}
+        {!search &&
+          movies?.map((movie) => (
+            <Link
+              key={movie.id}
+              to={`/details/${movie.id}`}
+              className='flex items-center'
+            >
+              <Card
+                image={movie.image}
+                title={movie.title}
+                genre={movie.genre}
+                rating={movie.rating}
+              />
+            </Link>
+          ))}
+        {search && moviesFilter.length === 0 && <p>No results found.</p>}
+        {search &&
+          moviesFilter.length > 0 &&
+          moviesFilter?.map((movie) => (
+            <Link
+              key={movie.id}
+              to={`/details/${movie.id}`}
+              className='flex items-center'
+            >
+              <Card
+                image={movie.image}
+                title={movie.title}
+                genre={movie.genre}
+                rating={movie.rating}
+              />
+            </Link>
+          ))}
       </div>
     </section>
   );
