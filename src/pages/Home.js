@@ -43,11 +43,6 @@ const Home = () => {
             value={search || ''}
             onChange={(e) => setSearch(e.target.value)}
           />
-          {/* <input
-            type='submit'
-            value='Search'
-            className='absolute right-0 items-center justify-center p-2 font-bold text-white transition-all duration-300 bg-yellow-400 border-2 border-yellow-400 shadow-sm cursor-pointer rounded-r-md hover:bg-yellow-300 hover:border-yellow-300 hover:tracking-wider'
-          /> */}
         </form>
       </div>
 

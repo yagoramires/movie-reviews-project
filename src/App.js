@@ -16,6 +16,7 @@ import Details from './pages/Details';
 import Profile from './pages/Profile';
 import NewReview from './pages/NewReview';
 import Loading from './components/Loading';
+import Favorites from './pages/Favorites';
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -51,10 +52,15 @@ function App() {
           element={!user ? <Navigate to='/' /> : <Profile user={user} />}
         />
         <Route
+          path='/favorites'
+          element={!user ? <Navigate to='/' /> : <Favorites user={user} />}
+        />
+        <Route
           path='/add-review'
           element={!user ? <Navigate to='/' /> : <NewReview user={user} />}
         />
         <Route path='/details/:id' element={<Details />} />
+        <Route path='/*' element={<Navigate to='/' />} />
       </Routes>
     </div>
   );
