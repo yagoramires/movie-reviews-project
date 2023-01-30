@@ -1,13 +1,14 @@
 <h1 > Movies Reviews </h1>
 
-<p>The objective of this app was built an webapp to a user add some movie and other users send their opinions about that movie.</p>
+<p>The purpose of this application was to build a WebApp for a user to add some movie and other users to send their opinions about that movie.</p>
 
 <h2> Features: </h2>
 <ul>
     <li> Build a FullStack Web App using <b><i>ReactJS</i></b> and <b><i>Google Firebase</i></b> </li>
     <li> Login and Register accounts</li>
     <li> Users can add movies</li>
-    <li> Users can comment and delete comments in details page</li>
+    <li> Users can search and add movie to favorites</li>
+    <li> Users can comment and delete comments in movie details page</li>
     <li> Users can edit their profile and recover password</li>
 </ul>
 
