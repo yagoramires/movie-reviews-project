@@ -88,9 +88,9 @@ const NewReview = ({ user }) => {
   }, [error, success, loading]);
 
   return (
-    <section className='flex flex-col items-center justify-center sectionHeight'>
-      <h1 className='my-8 text-5xl font-bold text-yellow-400 border-b-4 border-black '>
-        Add Movie
+    <section className='flex flex-col items-center justify-center bg-amber-200 sectionHeight'>
+      <h1 className='my-8 sm:text-xl md:text-2xl font-bold text-zinc-800 w-[90%] text-center '>
+        Add a new movie for users to submit their opinions
       </h1>
 
       {image && (
@@ -160,7 +160,7 @@ const NewReview = ({ user }) => {
           <input
             type='submit'
             value={'Upload Review'}
-            className='w-full p-4 font-bold text-white transition-all duration-300 bg-yellow-400 rounded-md shadow-sm cursor-pointer hover:bg-yellow-300 hover:tracking-wider'
+            className='w-full p-4 font-bold text-white transition-all duration-300 rounded-md shadow-sm cursor-pointer bg-zinc-800 hover:bg-zinc-700 hover:tracking-wider'
           />
         )}
 

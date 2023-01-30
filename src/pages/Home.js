@@ -32,7 +32,7 @@ const Home = () => {
             <span className='border-b-4 border-black'>movies</span>
           </h1>
           <p className='mt-4 text-xs italic text-gray-500 sm:text-base xl:text-xl'>
-            Be sure not to miss these reviews today.
+            Find a movie and leave your opinion about it
           </p>
         </div>
         <form className='relative flex sm:w-[50%]  w-full'>

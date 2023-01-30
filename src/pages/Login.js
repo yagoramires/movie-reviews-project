@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 // Router
 import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
+import ResetPassword from '../components/ResetPassword';
 import { useAuth } from '../hooks/useAuth';
 
 const Login = () => {
@@ -39,8 +40,8 @@ const Login = () => {
   }, [error]);
 
   return (
-    <section className='flex flex-col items-center justify-center sectionHeight'>
-      <div className='flex flex-col items-center justify-center px-16 py-8 bg-gray-100 rounded-md shadow-md max-w-[600px] w-[90%]'>
+    <section className='flex flex-col items-center justify-center sectionHeight bg-amber-200'>
+      <div className='flex flex-col items-center justify-center px-16 py-8 bg-white rounded-md shadow-md max-w-[600px] w-[90%]'>
         <h1 className='py-2 text-4xl font-bold tracking-wider text-yellow-400 transition-all duration-300 border-b-4 border-black hover:tracking-widest hover:text-yellow-300'>
           Login
         </h1>
@@ -57,7 +58,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder={'E-mail'}
             autoComplete='true'
-            className='w-full p-4 italic rounded-md shadow-sm outline-none'
+            className='w-full p-4 italic text-white rounded-md shadow-sm outline-none bg-zinc-800'
           />
           <input
             type='password'
@@ -65,7 +66,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder={'Password'}
             autoComplete='true'
-            className='w-full p-4 italic rounded-md shadow-sm outline-none'
+            className='w-full p-4 italic text-white rounded-md shadow-sm outline-none bg-zinc-800'
           />
           {!loading && (
             <input
@@ -85,13 +86,7 @@ const Login = () => {
         </form>
         <div className='flex flex-col w-full gap-2 mt-4'>
           <p className='italic text-gray-500 '>
-            Forgot your password?{' '}
-            <span
-              className='pb-1 font-bold text-yellow-400 transition-all duration-150 cursor-pointer hover:tracking-wider hover:text-yellow-300'
-              onClick={() => {}}
-            >
-              Reset
-            </span>
+            Forgot your password? <ResetPassword userEmail={email} />
           </p>
           <p className='italic text-gray-500 '>
             New here?{' '}

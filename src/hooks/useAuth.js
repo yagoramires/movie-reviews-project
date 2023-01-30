@@ -27,7 +27,7 @@ export const useAuth = () => {
 
   // Set redirect URL to localhost
   const actionCodeSettings = {
-    url: 'http://192.168.0.10:3000',
+    url: 'https://moviereviews-yago.vercel.app/',
   };
 
   // Function to register and login new users
@@ -80,6 +80,7 @@ export const useAuth = () => {
       setLoading(false);
     } catch (e) {
       setError(e.message);
+      console.log(e.message);
       setLoading(false);
     }
   };

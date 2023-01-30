@@ -132,23 +132,23 @@ const Profile = ({ user }) => {
   ]);
 
   return (
-    <div>
-      <div className='flex flex-col w-[90%] mx-auto justify-center items-center my-16 gap-8'>
+    <section className='flex flex-col items-center justify-center sectionHeight bg-amber-200'>
+      <div className='flex flex-col w-[90%] mx-auto justify-center items-center my-16 gap-8 '>
         {image ? (
           <img
             src={URL.createObjectURL(image)}
             alt='preview'
-            className='rounded-full w-[250px] h-[250px] object-cover'
+            className='rounded-full w-[250px] h-[250px] object-cover border-4 border-zinc-800 shadow-md'
           />
         ) : (
           <img
             src={user.photoURL}
             alt='user'
-            className='rounded-full w-[250px] h-[250px] object-cover'
+            className='rounded-full w-[250px] h-[250px] object-cover border-4 border-zinc-800 shadow-md'
           />
         )}
 
-        <h1 className='pb-2 text-5xl font-bold text-yellow-400 border-b-4 border-black'>
+        <h1 className='pb-2 text-2xl font-bold border-b-4 sm:text-3xl md:text-3xl lg:text-4xl text-zinc-800 border-zinc-800'>
           {user.displayName}
         </h1>
       </div>
@@ -235,7 +235,7 @@ const Profile = ({ user }) => {
           <input
             type='submit'
             value='Update Profile'
-            className='w-full p-4 font-bold text-white transition-all duration-300 bg-yellow-400 rounded-md shadow-sm cursor-pointer hover:bg-yellow-300 hover:tracking-wider'
+            className='w-full p-4 font-bold text-white transition-all duration-300 rounded-md shadow-sm cursor-pointer bg-zinc-800 hover:bg-zinc-700 hover:tracking-wider'
           />
         )}
 
@@ -249,7 +249,7 @@ const Profile = ({ user }) => {
         {successEmail && <p className='success'>{successEmail}</p>}
         {successPassword && <p className='success'>{successPassword}</p>}
       </form>
-    </div>
+    </section>
   );
 };
 
