@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useUpdateProfile } from '../hooks/useUpdateProfile';
 import { MdOutlineClose, MdCheck } from 'react-icons/md';
+import { FaUserAlt } from 'react-icons/fa';
 import Loading from '../components/Loading';
 
 const Profile = ({ user }) => {
@@ -9,6 +10,8 @@ const Profile = ({ user }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [image, setImage] = useState('');
+
+  console.log(image);
 
   const [error, setError] = useState('');
 
@@ -134,18 +137,26 @@ const Profile = ({ user }) => {
   return (
     <section className='flex flex-col items-center justify-center sectionHeight bg-amber-200'>
       <div className='flex flex-col w-[90%] mx-auto justify-center items-center my-16 gap-8 '>
-        {image ? (
+        {image && (
           <img
             src={URL.createObjectURL(image)}
             alt='preview'
             className='rounded-full w-[250px] h-[250px] object-cover border-4 border-zinc-800 shadow-md'
           />
-        ) : (
+        )}
+
+        {user.photoURL && !image && (
           <img
             src={user.photoURL}
             alt='user'
             className='rounded-full w-[250px] h-[250px] object-cover border-4 border-zinc-800 shadow-md'
           />
+        )}
+
+        {!image && !user.photoURL && (
+          <div className='flex justify-center items-center rounded-full w-[250px] h-[250px] object-cover border-4 border-zinc-800 shadow-md'>
+            <FaUserAlt size={100} />
+          </div>
         )}
 
         <h1 className='pb-2 text-2xl font-bold border-b-4 sm:text-3xl md:text-3xl lg:text-4xl text-zinc-800 border-zinc-800'>

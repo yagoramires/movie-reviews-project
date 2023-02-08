@@ -8,6 +8,7 @@ import {
   Item,
   Trigger,
   Content,
+  Link as RadixLink,
 } from '@radix-ui/react-navigation-menu';
 
 // Icons
@@ -35,18 +36,22 @@ const Header = ({ user }) => {
                 <GiHamburgerMenu size={20} className='text-yellow-400' />
               </Trigger>
               <Content className='absolute right-0 z-10 flex flex-col gap-2 p-4 shadow-md bg-gray-50'>
-                <Link
-                  to='/login'
-                  className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
-                >
-                  Login
-                </Link>
-                <Link
-                  to='/register'
-                  className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
-                >
-                  Register
-                </Link>
+                <RadixLink>
+                  <Link
+                    to='/login'
+                    className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
+                  >
+                    Login
+                  </Link>
+                </RadixLink>
+                <RadixLink>
+                  <Link
+                    to='/register'
+                    className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
+                  >
+                    Register
+                  </Link>
+                </RadixLink>
               </Content>
             </Item>
           )}
@@ -66,30 +71,38 @@ const Header = ({ user }) => {
                 </Trigger>
               )}
               <Content className='absolute right-0 z-10 flex flex-col gap-2 p-4 shadow-md bg-gray-50 w-[170px]'>
-                <Link
-                  to='/profile'
-                  className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
-                >
-                  Profile
-                </Link>
-                <Link
-                  to='/add-review'
-                  className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
-                >
-                  New Review
-                </Link>
-                <Link
-                  to='/favorites'
-                  className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
-                >
-                  Favorites
-                </Link>
-                <span
-                  onClick={signOutUser}
-                  className='px-4 text-yellow-400 transition-all duration-200 cursor-pointer hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
-                >
-                  Sign out
-                </span>
+                <RadixLink>
+                  <Link
+                    to='/profile'
+                    className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
+                  >
+                    Profile
+                  </Link>
+                </RadixLink>
+                <RadixLink>
+                  <Link
+                    to='/add-review'
+                    className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
+                  >
+                    New Review
+                  </Link>
+                </RadixLink>
+                <RadixLink>
+                  <Link
+                    to='/favorites'
+                    className='px-4 text-yellow-400 transition-all duration-200 hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
+                  >
+                    Favorites
+                  </Link>
+                </RadixLink>
+                <RadixLink>
+                  <span
+                    onClick={signOutUser}
+                    className='px-4 text-yellow-400 transition-all duration-200 cursor-pointer hover:text-black hover:font-bold hover:border-l-4 hover:border-l-yellow-400'
+                  >
+                    Sign out
+                  </span>
+                </RadixLink>
               </Content>
             </Item>
           )}

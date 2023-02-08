@@ -26,10 +26,10 @@ const Favorites = ({ user }) => {
                   genre={movie.genre}
                   rating={movie.rating}
                 />
-                <div className='absolute top-0 right-0 p-2 bg-[rgba(0,0,0,0.7)] cursor-pointer'>
-                  <AddFavorite movieId={movie.id} user={user} />
-                </div>
               </Link>
+              <div className='absolute top-0 right-0 p-2 bg-[rgba(0,0,0,0.7)] cursor-pointer'>
+                <AddFavorite movieId={movie.id} user={user} />
+              </div>
             </div>
           ))}
       </div>
